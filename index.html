@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Веб-разработчик из Новосибирска. Создание сайтов под ключ, парсеры на PHP/Puppeteer, WordPress. Портфолио с кейсами.">
+    <meta name="description" content="Веб-разработчик. Создание сайтов под ключ, парсеры на PHP/Puppeteer, WordPress. Портфолио с кейсами.">
     <title>Кирилл | Веб-разработчик | Портфолио и заказ</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -30,15 +30,17 @@
     <header class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
-                <div class="badge">📍 Новосибирск — работаю для всего мира</div>
-                <h1 class="hero-title">Сайты, парсеры, <span class="gradient-text">WordPress</span><br>под ключ</h1>
-                <p class="hero-desc">PHP | Node.js (Puppeteer) | SEO. Фриланс 5+ лет. Делаю результат, а не просто код.</p>
+                <div class="badge">📍 Работаю удаленно для всего мира</div>
+                <h1 class="hero-title">Сайты, парсеры, WP <span class="gradient-text">продающий проект</span><br>под ключ</h1>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Отправить заявку →</a>
                     <a href="#portfolio" class="btn btn-outline">Кейсы</a>
                 </div>
                 <div class="tech-stack">
                     <span>🛠 Стек:</span>
+                    <span>HTML</span>
+                    <span>SCSS</span>
+                    <span>JavaScript</span>
                     <span>PHP</span>
                     <span>Node.js</span>
                     <span>Puppeteer</span>
@@ -49,7 +51,7 @@
             <div class="hero-stats">
                 <div class="stat-card"><span class="stat-number">5+</span><span class="stat-label">лет опыта</span></div>
                 <div class="stat-card"><span class="stat-number">50+</span><span class="stat-label">проектов</span></div>
-                <div class="stat-card"><span class="stat-number">100%</span><span class="stat-label">отзывов 5★</span></div>
+                <div class="stat-card"><span class="stat-number">95%</span><span class="stat-label">отзывов 5★</span></div>
             </div>
         </div>
     </header>
@@ -65,19 +67,19 @@
             <div class="portfolio-grid" id="portfolioGrid">
                 <!-- 1. Парсер WB -->
                 <div class="portfolio-card" 
-                     data-name="Парсер Wildberries с мониторингом цен"
+                     data-name="Парсер Еаптека с мониторингом цен"
                      data-desc="Автоматический сбор данных о товарах с Wildberries: цены, остатки, рейтинги, отзывы. Система запускается по расписанию и выгружает отчет в Google Sheets."
-                     data-task="Клиент — интернет-магазин, который торгует на WB. Нужно было отслеживать цены конкурентов 2 раза в день и оперативно реагировать на изменения. Ручной сбор занимал 3 часа в день."
-                     data-tech="Node.js • Puppeteer • Прокси-ротация • Google Sheets API • Cron-задания"
+                     data-task="Клиенту нужно было отслеживать цены конкурентов 2 раза в день и оперативно реагировать на изменения. Ручной сбор занимал много времени."
+                     data-tech="Node.js • Puppeteer • Прокси-ротация • Cron-задания"
                      data-result="Автоматизация сэкономила 80+ часов в месяц. Клиент начал успевать корректировать цены быстрее конкурентов, продажи выросли на 35% за 2 месяца."
                      data-price="25 000 ₽"
                      data-icon="🛒">
                     <div class="card-img"><span class="card-icon">🛒</span></div>
-                    <div class="card-info"><h3>Парсер Wildberries</h3><p>Мониторинг цен конкурентов с автовыгрузкой</p><div class="card-tech">Puppeteer • Node.js</div></div>
+                    <div class="card-info"><h3>Парсер Еаптека</h3><p>Мониторинг цен конкурентов</p><div class="card-tech">Puppeteer • Node.js</div></div>
                 </div>
                 <!-- 2. Корп. портал Логист -->
                 <div class="portfolio-card"
-                     data-name="Корпоративный портал для логистической компании"
+                     data-name="Корпоративный портал для компании"
                      data-desc="Система управления заявками, документами и клиентами. Сотрудники видят статусы заказов в реальном времени."
                      data-task="Компания с 3 филиалами использовала Excel и почту — терялись заявки, не было единой базы. Требовалось: авторизация по ролям, CRM-функционал, интеграция с 1С (выгрузка накладных)."
                      data-tech="WordPress • ACF Pro • Custom Post Types • Timber (Twig) • REST API"
@@ -85,9 +87,21 @@
                      data-price="85 000 ₽"
                      data-icon="🏢">
                     <div class="card-img"><span class="card-icon">🏢</span></div>
-                    <div class="card-info"><h3>Корп. портал Логист</h3><p>CRM + документооборот для логистов</p><div class="card-tech">WordPress • ACF</div></div>
+                    <div class="card-info"><h3>Корпоративный портал</h3><p>CRM + документооборот для логистов</p><div class="card-tech">WordPress • ACF</div></div>
                 </div>
-                <!-- 3. CRM Автосервис -->
+                <!-- 3. Лендинг йога (скрыт) -->
+                <div class="portfolio-card hidden-project"
+                     data-name="Лендинг для студии танца (мультиязычный) с онлайн-записью"
+                     data-desc="Продающий одностраничный сайт с таймером акции, формой записи и интеграцией с Telegram-ботом."
+                     data-task="Студия открывалась и нужен был быстрый старт продаж абонементов. Важно: мобильная версия, оплата через виджет, автоматическое подтверждение записи."
+                     data-tech="HTML5 • CSS3 (Grid/Flex) • JavaScript (чистый) • PHP форма • Telegram Bot API"
+                     data-result="За первый месяц — 47 заявок, конверсия 4.8%. Студия набрала 3 группы за 2 недели после запуска."
+                     data-price="30 000 ₽"
+                     data-icon="🌐">
+                    <div class="card-img"><span class="card-icon">🌐</span></div>
+                    <div class="card-info"><h3>Лендинг для студии танца (мультиязычный)</h3><p>Запись в группы, таймер акции</p><div class="card-tech">JS • PHP форма</div></div>
+                </div>
+                <!-- 4. CRM Автосервис -->
                 <div class="portfolio-card"
                      data-name="CRM-система для автосервиса"
                      data-desc="Учет клиентов, автомобилей, ремонтов, запасных частей. Генерация заказ-нарядов и актов выполненных работ."
@@ -98,18 +112,6 @@
                      data-icon="📊">
                     <div class="card-img"><span class="card-icon">📊</span></div>
                     <div class="card-info"><h3>CRM Автосервис</h3><p>Учет клиентов, запись, PDF-отчеты</p><div class="card-tech">PHP OOP • MySQL</div></div>
-                </div>
-                <!-- 4. Лендинг йога (скрыт) -->
-                <div class="portfolio-card hidden-project"
-                     data-name="Лендинг для студии йоги с онлайн-записью"
-                     data-desc="Продающий одностраничный сайт с таймером акции, формой записи и интеграцией с Telegram-ботом."
-                     data-task="Студия открывалась и нужен был быстрый старт продаж абонементов. Важно: мобильная версия, оплата через виджет, автоматическое подтверждение записи."
-                     data-tech="HTML5 • CSS3 (Grid/Flex) • JavaScript (чистый) • PHP форма • Telegram Bot API"
-                     data-result="За первый месяц — 47 заявок, конверсия 4.8%. Студия набрала 3 группы за 2 недели после запуска."
-                     data-price="30 000 ₽"
-                     data-icon="🌐">
-                    <div class="card-img"><span class="card-icon">🌐</span></div>
-                    <div class="card-info"><h3>Лендинг для йоги</h3><p>Запись в группы, таймер акции</p><div class="card-tech">JS • PHP форма</div></div>
                 </div>
                 <!-- 5. Мультилендинг регионы (скрыт) -->
                 <div class="portfolio-card hidden-project"
@@ -125,27 +127,27 @@
                 </div>
                 <!-- 6. Интернет-магазин мебели (скрыт) -->
                 <div class="portfolio-card hidden-project"
-                     data-name="Интернет-магазин мебели на WooCommerce"
+                     data-name="Интернет-магазин дверей на WooCommerce"
                      data-desc="Полноценный каталог с фильтрами, корзиной, онлайн-оплатой и интеграцией со службой доставки (СДЭК)."
-                     data-task="Клиент продавал мебель через Instagram — захотел свой сайт. Нужна: выгрузка товаров из Excel, расчет доставки, CRM для менеджеров."
+                     data-task="Клиент продавал двери через Instagram — захотел свой сайт. Нужна: выгрузка товаров из Excel, расчет доставки, CRM для менеджеров."
                      data-tech="WordPress • WooCommerce • WPML (англ/рус) • YITH Фильтры • СДЭК API"
                      data-result="За первые 3 месяца продажи через сайт составили 1.2 млн ₽. Сайт окупился за 2 месяца."
                      data-price="110 000 ₽"
                      data-icon="📦">
                     <div class="card-img"><span class="card-icon">📦</span></div>
-                    <div class="card-info"><h3>Магазин мебели</h3><p>WooCommerce, фильтры, доставка</p><div class="card-tech">Woo • WPML</div></div>
+                    <div class="card-info"><h3>Магазин дверей</h3><p>WooCommerce, фильтры, доставка</p><div class="card-tech">Woo • WPML</div></div>
                 </div>
                 <!-- 7. Парсер Avito (скрыт) -->
                 <div class="portfolio-card hidden-project"
-                     data-name="Парсер Avito с API и выгрузкой в Excel"
-                     data-desc="Сбор объявлений по ключевым словам, категориям и городам. Автоматическая выгрузка в XLSX с графиками."
-                     data-task="Клиент — аналитик недвижимости. Нужно было собрать 50 000+ объявлений за неделю с автоподбором новых."
-                     data-tech="Node.js • Puppeteer • Прокси (ротация IP) • ExcelJS • Telegram-уведомления"
-                     data-result="Собрали 120 000 объявлений за 5 дней. Клиент смог провести анализ рынка и выявить среднюю цену за м²."
+                     data-name="Парсер электродиталей с выгрузкой в Excel"
+                     data-desc="Сбор с нескольких доноров по ключевым словам, категориям и городам. Автоматическая выгрузка в XLSX с графиками."
+                     data-task="Клиент — продавец электродиталей и компонентов. Нужно было собрать 50 000+ товаров с автоподбором новых."
+                     data-tech="PHP • PHPQuery • Прокси (ротация IP) • ExcelJS • Telegram-уведомления"
+                     data-result="Клиент смог провести анализ рынка и выявить среднюю цену."
                      data-price="35 000 ₽"
                      data-icon="🧠">
                     <div class="card-img"><span class="card-icon">🧠</span></div>
-                    <div class="card-info"><h3>API-парсер Avito</h3><p>Сбор объявлений в Excel</p><div class="card-tech">Node.js • прокси</div></div>
+                    <div class="card-info"><h3>Парсер электротоваров</h3><p>Сбор товаров в Excel</p><div class="card-tech">PHP • прокси</div></div>
                 </div>
                 <!-- 8. Сайт ветклиники (скрыт) -->
                 <div class="portfolio-card hidden-project"
@@ -207,7 +209,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">PROCESS</span>
-                <h2 class="section-title">Как мы <span class="gradient-text">работаем</span></h2>
+                <h2 class="section-title">Процесс<span class="gradient-text"> разработки "под ключ"</span></h2>
                 <p class="section-subtitle">Полный цикл разработки — от идеи до запуска и поддержки</p>
             </div>
             <div class="process-timeline">
@@ -215,7 +217,7 @@
                     <div class="step-number">01</div>
                     <div class="step-content">
                         <h3>Бриф + ТЗ</h3>
-                        <p>Проводим бесплатную консультацию (звонок или чат). Вы рассказываете о бизнесе, целях и аудитории. Я анализирую рынок и конкурентов. Вместе составляем техническое задание, в котором четко прописаны все блоки, функции и сроки.</p>
+                        <p>Отправляю вам короткий бриф, вы его заполняете и возвращаете мне для оценки и анализа. Вместе составляем техническое задание, в котором четко прописаны все блоки, функции и сроки.</p>
                     </div>
                 </div>
                 <div class="process-step">
@@ -229,14 +231,14 @@
                     <div class="step-number">03</div>
                     <div class="step-content">
                         <h3>Прототип и дизайн</h3>
-                        <p>Рисую прототип (схему расположения блоков) в Figma. После утверждения создаю дизайн-макет в современном стиле: адаптив под ПК, планшеты, телефоны. Вы вносите правки — я правлю до идеала.</p>
+                        <p>Рисую прототип (схему расположения блоков). После утверждения создаю дизайн-макет в современном стиле: адаптив под ПК, планшеты, телефоны. Вы вносите правки — я правлю до идеала.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">04</div>
                     <div class="step-content">
                         <h3>Вёрстка + Программирование</h3>
-                        <p>Верстаю сайт на чистом HTML/CSS/JS либо на WordPress (как договорились). Добавляю анимации, формы, слайдеры, фильтры, админ-панель. Вы получаете доступ к тестовому домену и видите процесс в реальном времени.</p>
+                        <p>Верстаю сайт на чистом HTML/CSS/JS либо на WordPress (как договорились). Добавляю анимации, формы, слайдеры, фильтры, админ-панель.</p>
                     </div>
                 </div>
                 <div class="process-step">
@@ -264,7 +266,7 @@
                     <div class="step-number">08</div>
                     <div class="step-content">
                         <h3>Запуск и бесплатная поддержка</h3>
-                        <p>Проводим финальное тестирование, запускаем сайт. Первые 30 дней после запуска я бесплатно исправляю любые баги и консультирую вас по работе с сайтом. Дальше — по желанию заключаем договор на техподдержку (от 3000 ₽/мес).</p>
+                        <p>Проводим финальное тестирование, запускаем сайт. Первые 30 дней после запуска я бесплатно исправляю любые баги и консультирую вас по работе с сайтом. Дальше — по желанию заключаем договор на техподдержку (от 5000 ₽/мес).</p>
                     </div>
                 </div>
             </div>
@@ -275,18 +277,18 @@
     <section id="pricing" class="section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">PRICES (Новосибирск)</span>
+                <span class="section-tag">PRICES</span>
                 <h2 class="section-title">Стоимость <span class="gradient-text">моих услуг</span></h2>
                 <p class="section-subtitle">Фиксированные цены для типовых проектов. Сложные задачи — индивидуально.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card"><h3>Landing Page (одностраничник)</h3><div class="price">от 30 000 ₽</div><ul><li>Одностраничный сайт</li><li>Формы, карта, анимации</li><li>Адаптив, SEO-база</li><li>До 5 блоков контента</li></ul><a href="#contact" class="btn btn-outline">Заказать</a></div>
-                <div class="price-card"><h3>MultiLanding (регионы)</h3><div class="price">от 45 000 ₽</div><ul><li>Динамический контент</li><li>5+ городов</li><li>Подстановка цен/телефонов</li><li>Автоопределение города</li></ul><a href="#contact" class="btn btn-outline">Заказать</a></div>
+                <div class="price-card"><h3>MultiLanding (регионы)</h3><div class="price">от 45 000 ₽</div><ul><li>Динамический контент</li><li>5+ городов</li><li>Подстановка цен/тел.</li><li>Автоопределение города</li></ul><a href="#contact" class="btn btn-outline">Заказать</a></div>
                 <div class="price-card featured"><div class="popular-badge">🔥 Популярное</div><h3>Корпоративный / Визитка</h3><div class="price">от 60 000 ₽</div><ul><li>5-15 страниц</li><li>Админ-панель (WP)</li><li>Фотогалерея, новости</li><li>Форма обратной связи</li></ul><a href="#contact" class="btn btn-primary">Заказать</a></div>
                 <div class="price-card"><h3>Интернет-магазин (Woo)</h3><div class="price">от 90 000 ₽</div><ul><li>Каталог, корзина, оплата</li><li>Интеграция с ТОО/СДЭК</li><li>Обучение менеджера</li><li>Выгрузка товаров из Excel</li></ul><a href="#contact" class="btn btn-outline">Заказать</a></div>
                 <div class="price-card"><h3>Парсинг данных</h3><div class="price">от 15 000 ₽</div><ul><li>Сырые данные (CSV/JSON)</li><li>Без аналитики</li><li>Любые сайты + динамика</li><li>Авторасписание (Cron)</li></ul><a href="#contact" class="btn btn-outline">Заказать</a></div>
             </div>
-            <p class="price-note">* Точная стоимость после брифа. Работаю по РФ и СНГ, оплата — переводом или как самозанятый с чеком.</p>
+            <p class="price-note">* Точная стоимость после брифа. Оплата — переводом или как самозанятый с чеком.</p>
         </div>
     </section>
 
@@ -297,11 +299,11 @@
                 <div class="contact-info">
                     <span class="section-tag">GET IN TOUCH</span>
                     <h2 class="contact-title">Обсудим <span class="gradient-text">ваш проект?</span></h2>
-                    <p>Пишите — я отвечаю в течение 3 часов (обычно быстрее). Работаю удаленно, клиенты из Новосибирска и по всему миру.</p>
+                    <p>Пишите — я отвечаю в течение рабочего дня (стараюсь быстрее). Работаю удаленно по всему миру.</p>
                     <div class="contact-details">
-                        <div class="contact-line">📧 <strong>Email:</strong> <a href="mailto:kirill@dev.ru">kirill@dev.ru</a></div>
-                        <div class="contact-line">📱 <strong>Telegram:</strong> <a href="#">@kirill_webdev</a></div>
-                        <div class="contact-line">📍 <strong>Город:</strong> Новосибирск, Академгородок</div>
+                        <div class="contact-line">📧 <strong>Email:</strong> <a href="mailto:rusacov91@mail.ru">rusacov91@mail.ru</a></div>
+                        <div class="contact-line">📱 <strong>Telegram:</strong> <a href="#">@KirillRusacov</a></div>
+                        <div class="contact-line">📍 <strong>Локация:</strong> Удаленно</div>
                     </div>
                 </div>
                 <form class="contact-form" id="ajax-contact-form" method="post" action="mail.php">
@@ -317,7 +319,7 @@
     </section>
 
     <footer>
-        <div class="container"><div class="footer-content"><div class="footer-logo">K<span class="glow">IRILL</span> <span style="font-size:0.9rem;">⚡ веб-разработчик</span></div><div class="footer-copy">© 2025 — Фриланс из Новосибирска</div></div></div>
+        <div class="container"><div class="footer-content"><div class="footer-logo">K<span class="glow">IRILL</span> <span style="font-size:0.9rem;">⚡ веб-разработчик</span></div><div class="footer-copy">© 2026 — Web Developing</div></div></div>
     </footer>
 
     <script src="js/script.js"></script>
