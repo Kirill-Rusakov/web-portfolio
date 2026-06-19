@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Craft — Разработка сайтов, ТГ-ботов и парсеров в Новосибирске</title>
+    <meta name="description" content="Разработка сайтов на WordPress, телеграм-ботов, парсеров и интернет-магазинов в Новосибирске. Работаем с бизнесом любой сложности. Бесплатная консультация.">
+    <meta name="keywords" content="разработка сайтов Новосибирск, создание сайтов, телеграм бот, парсер данных, интернет-магазин, WordPress, веб-студия, Quantum Craft">
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/img/favicons/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #206ef8;
+            --primary-dark: #1a5cd4;
+            --primary-light: #4a8af9;
+            --dark: #0f0f1a;
+            --dark-card: #1a1a2e;
+            --dark-surface: #24243a;
+            --gray: #8a8aa0;
+            --gray-light: #b8b8cc;
+            --white: #ffffff;
+            --white-card: #f8f9fc;
+            --black-text: #1a1a2e;
+            --gray-text: #4a4a5e;
+            --gradient: linear-gradient(135deg, #206ef8 0%, #4a8af9 100%);
+            --gradient-text: linear-gradient(135deg, #206ef8, #4a8af9);
+            --shadow: 0 20px 60px rgba(32, 110, 248, 0.15);
+            --shadow-hover: 0 30px 80px rgba(32, 110, 248, 0.25);
+            --shadow-white: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        }
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px;
+        }
+        h3 {
+            font-size: clamp(1.3rem, 2vw, 1.8rem);
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-light);
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: var(--gradient);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: transparent;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(32, 110, 248, 0.1);
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-white);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 8px;
+            line-height: 1;
+        }
+
+        .btn-close:hover {
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(15, 15, 26, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 12px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-light);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--gradient);
+            border-radius: 50px;
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(32, 110, 248, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .hero-stats {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hero-stat h3 {
+            font-size: 2rem;
+        }
+        .hero-stat p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-code-block {
+            background: var(--white-card);
+            border-radius: var(--radius);
+            padding: 32px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-code-block .code-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-code-block .code-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+        }
+        .hero-code-block .code-dots span:nth-child(1) { background: #FF5F57; }
+        .hero-code-block .code-dots span:nth-child(2) { background: #FFBD2E; }
+        .hero-code-block .code-dots span:nth-child(3) { background: #28C840; }
+
+        .hero-code-block pre {
+            color: var(--black-text);
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .hero-code-block .keyword { color: #206ef8; }
+        .hero-code-block .string { color: #e67e22; }
+        .hero-code-block .comment { color: #8a8aa0; }
+        .hero-code-block .function { color: #206ef8; }
+        .hero-code-block .variable { color: #1a5cd4; }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* Section Background Images */
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        /* ===== WHITE CARDS ===== */
+        .white-card {
+            background: var(--white-card);
+            border-radius: var(--radius-sm);
+            padding: 32px 28px;
+            color: var(--black-text);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .white-card h3 {
+            color: var(--black-text);
+        }
+
+        .white-card p {
+            color: var(--gray-text);
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: var(--dark-card);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            background: var(--dark-surface);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .about-feature .check {
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .about-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .about-stat-card {
+            background: var(--white-card);
+            padding: 32px 24px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+        }
+
+        .about-stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .about-stat-card p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            max-width: 120px;
+            text-align: center;
+        }
+
+        /* ===== SERVICES ===== */
+        .services {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: var(--white-card);
+            border-radius: var(--radius-sm);
+            padding: 32px 28px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: var(--black-text);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card h3 {
+            color: var(--black-text);
+            margin-bottom: 10px;
+            min-height: 2.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-card p {
+            color: var(--gray-text);
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .service-card .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .service-card .tech-tags span {
+            background: var(--dark);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--gray-light);
+            font-weight: 500;
+        }
+
+        /* ===== PORTFOLIO ===== */
+        .portfolio {
+            background: var(--dark-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-item {
+            background: var(--white-card);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            color: var(--black-text);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-image {
+            height: 220px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-info {
+            padding: 20px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .portfolio-info h4 {
+            color: var(--black-text);
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .portfolio-info p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .portfolio-info .result {
+            padding: 6px 16px;
+            background: rgba(32, 110, 248, 0.1);
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white-card);
+            border-radius: var(--radius);
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+            color: var(--black-text);
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--black-text);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            color: var(--black-text);
+            margin-bottom: 8px;
+            padding-right: 40px;
+        }
+
+        .modal-content .project-tag {
+            display: inline-block;
+            padding: 4px 16px;
+            background: rgba(32, 110, 248, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .modal-content .project-detail {
+            margin: 16px 0;
+            padding: 16px 20px;
+            background: var(--dark-surface);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--primary);
+            color: var(--white);
+        }
+
+        .modal-content .project-detail strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .modal-content .project-detail ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 16px;
+        }
+
+        .modal-content .project-detail ul li {
+            padding: 4px 0;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .modal-content .project-detail ul li::before {
+            content: '▸';
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .modal-content .project-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .modal-content .project-specs .spec {
+            background: var(--dark-surface);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .modal-content .project-specs .spec .label {
+            color: var(--gray);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-content .project-specs .spec .value {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .modal-content .project-specs .spec .value .stack-tag {
+            display: inline-block;
+            background: var(--dark);
+            padding: 2px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--gray-light);
+            margin: 2px;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-card {
+            background: var(--white-card);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--black-text);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            background: var(--white-card);
+        }
+
+        .pricing-card h4 {
+            color: var(--black-text);
+            font-size: 1rem;
+            font-weight: 700;
+            min-height: 2.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black-text);
+            margin: 12px 0;
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 16px 0 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            padding: 6px 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 2rem;
+        }
+
+        .pricing-card ul li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pricing-card .btn-outline {
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+            color: var(--black-text);
+            border-color: rgba(0,0,0,0.15);
+        }
+
+        .pricing-card .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(32, 110, 248, 0.05);
+            color: var(--primary);
+        }
+
+        .pricing-card .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            background: var(--dark-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-item {
+            background: var(--white-card);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            overflow: hidden;
+            color: var(--black-text);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--black-text);
+        }
+
+        .faq-question:hover {
+            background: rgba(32, 110, 248, 0.04);
+        }
+
+        .faq-question .arrow {
+            transition: var(--transition);
+            font-size: 1.2rem;
+            color: var(--gray);
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-item.active .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 24px;
+            color: var(--gray-text);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .cta {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            max-width: 600px;
+            margin: 0 auto 16px;
+        }
+
+        .cta p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .cta .btn-primary {
+            font-size: 1.1rem;
+            padding: 18px 48px;
+        }
+
+        .cta .btn-white {
+            font-size: 1.1rem;
+            padding: 18px 48px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            section {
+                padding: 80px 0;
+            }
+
+            .modal-content .project-detail ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--dark-card);
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px;
+                transition: var(--transition);
+                gap: 20px;
+                border-left: 1px solid rgba(255,255,255,0.05);
+            }
+
+            nav.open {
+                right: 0;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-code-block {
+                max-width: 100%;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+                align-items: center;
+            }
+
+            .about-feature {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .about-stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .service-card {
+                align-items: center;
+                text-align: center;
+            }
+
+            .service-card .tech-tags {
+                justify-content: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .portfolio-info {
+                align-items: center;
+                text-align: center;
+            }
+
+            .portfolio-info .result {
+                align-self: center;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .modal-content {
+                padding: 24px;
+                margin: 12px;
+            }
+
+            .modal-content .project-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content .project-detail ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .about-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-code-block pre {
+                font-size: 0.7rem;
+            }
+
+            .pricing-card {
+                padding: 20px 16px;
+            }
+
+            .pricing-card ul li {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">⚛</span>
+                Quantum<span>Craft</span>
+            </a>
+
+            <nav id="nav">
+                <a href="#about">О нас</a>
+                <a href="#services">Услуги</a>
+                <a href="#portfolio">Портфолио</a>
+                <a href="#pricing">Цены</a>
+                <a href="#faq">FAQ</a>
+                <a href="#cta" class="nav-cta">Обсудить проект</a>
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-image"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="section-label">Разработка в Новосибирске</span>
+                <h1>
+                    Цифровые <br>
+                    <span class="gradient-text">инструменты</span><br>
+                    для бизнеса
+                </h1>
+                <p>
+                    Создаём рабочие сайты, интернет-магазины, телеграм-ботов и парсеры. 
+                    Быстро, надёжно и без переплаты за излишнюю сложность.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn-primary">Обсудить проект</a>
+                    <a href="#portfolio" class="btn-outline">Наши работы</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <h3>5+</h3>
+                        <p>лет работы в вебе</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>100+</h3>
+                        <p>реализованных проектов</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>90%</h3>
+                        <p>успешных клиентов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-code-block">
+                    <div class="code-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <pre>
+<span class="comment">// Сайт + ТГ-бот + парсер</span>
+<span class="keyword">class</span> <span class="function">BusinessTool</span> {
+    <span class="variable">$site</span> = <span class="string">'WordPress + Elementor'</span>;
+    <span class="variable">$bot</span> = <span class="string">'Telegram API + PHP'</span>;
+    <span class="variable">$parser</span> = <span class="string">'Node.js + Puppeteer'</span>;
+
+    <span class="keyword">public function</span> <span class="function">launch</span>() {
+        <span class="keyword">return</span> <span class="string">'Готово за 5 дней!'</span>;
+    }
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+        <div class="about-bg"></div>
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-label">О нас</span>
+                    <h2>Не просто код, а <span class="gradient-text">рабочие решения</span></h2>
+                    <p>
+                        Quantum Craft - это команда разработчиков, которая создаёт цифровые инструменты для малого и среднего бизнеса. 
+                        Наша философия - дать клиенту ровно то, что ему нужно, без переплаты за излишнюю сложность.
+                    </p>
+                    <p>
+                        Мы не занимаемся дизайном как искусством. Наша экспертиза - в технической реализации, интеграциях и скорости. 
+                        Вы получаете качественный сайт без переплаты за «креатив».
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature"><span class="check">✓</span> Полный цикл разработки</div>
+                        <div class="about-feature"><span class="check">✓</span> Кастомные интеграции</div>
+                        <div class="about-feature"><span class="check">✓</span> Фиксированные цены</div>
+                        <div class="about-feature"><span class="check">✓</span> Поддержка после запуска</div>
+                    </div>
+                </div>
+                <div class="about-stats-grid">
+                    <div class="about-stat-card">
+                        <h3>5+</h3>
+                        <p>лет опыта в разработке</p>
+                    </div>
+                    <div class="about-stat-card">
+                        <h3>100+</h3>
+                        <p>реализованных проектов</p>
+                    </div>
+                    <div class="about-stat-card">
+                        <h3>90%</h3>
+                        <p>клиентов возвращаются</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services">
+        <div class="services-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Услуги</span>
+                <h2>Что мы <span class="gradient-text">делаем</span></h2>
+                <p class="section-subtitle">Разрабатываем под ключ - от лендинга до сложных интеграций</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Сайты и лендинги</h3>
+                    <p>Быстрая разработка на WordPress с кастомными темами. Адаптивная вёрстка, SEO-оптимизация, высокая скорость загрузки.</p>
+                    <div class="tech-tags">
+                        <span>HTML/CSS</span><span>JS</span><span>PHP</span><span>WordPress</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>Интернет-магазины</h3>
+                    <p>Полнофункциональные магазины с кастомной логикой, фильтрацией, интеграцией с 1С и платёжными системами.</p>
+                    <div class="tech-tags">
+                        <span>WooCommerce</span><span>PHP</span><span>JS</span><span>API</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>Телеграм-боты</h3>
+                    <p>Автоматизация продаж, уведомления о заказах, запись клиентов, рассылки. Полная интеграция с вашим сайтом.</p>
+                    <div class="tech-tags">
+                        <span>PHP</span><span>Telegram API</span><span>Webhook</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>Парсеры данных</h3>
+                    <p>Сбор данных с сайтов конкурентов, мониторинг цен, автоматический импорт товаров. На Node.js + Puppeteer.</p>
+                    <div class="tech-tags">
+                        <span>Node.js</span><span>Puppeteer</span><span>Cheerio</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>Интеграции</h3>
+                    <p>Подключаем ваш сайт к CRM, телеграм-ботам, парсерам и внешним API. Любая кастомная логика под ваш бизнес.</p>
+                    <div class="tech-tags">
+                        <span>REST API</span><span>Webhooks</span><span>PHP</span><span>JS</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>Поддержка и доработка</h3>
+                    <p>Техподдержка 24/7, доработки существующих проектов, оптимизация производительности.</p>
+                    <div class="tech-tags">
+                        <span>24/7</span><span>Фикс. цена</span><span>Гарантия</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Портфолио</span>
+                <h2>Наши <span class="gradient-text">проекты</span></h2>
+                <p class="section-subtitle">Реальные кейсы с измеримыми результатами - нажмите на карточку для подробностей</p>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Project 1 -->
+                <div class="portfolio-item" data-project="1">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vozduh Dance Studio">
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Vozduh - Pole and Dance</h4>
+                        <p>Лендинг на 3-х языках с расписанием и записью</p>
+                        <span class="result">Заявок +70% за первый месяц</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item" data-project="2">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="OnlineSell.uz">
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>OnlineSell.uz</h4>
+                        <p>Конструктор бизнеса + CRM + ТГ-бот для арендаторов</p>
+                        <span class="result">50+ активных арендаторов за 3 месяца</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item" data-project="3">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ModuleSource">
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>Module Source</h4>
+                        <p>Парсер радиодеталей с 3-х доноров в реальном времени</p>
+                        <span class="result">Поиск по 50 000+ позиций</span>
+                    </div>
+                </div>
+            </div>
+            <span class="section-label" style="margin-top: 30px; text-decoration: underline; cursor: pointer;">Больше проектов</span>
+        </div>
+    </section>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div id="modalContent">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PRICING ===== -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Цены</span>
+                <h2>Прозрачные <span class="gradient-text">тарифы</span></h2>
+                <p class="section-subtitle">Фиксированная стоимость - без скрытых платежей</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Лендинг / Визитка</h4>
+                    <div class="price">25 000 ₽ <span>от</span></div>
+                    <ul>
+                        <li>Адаптивная вёрстка</li>
+                        <li>Админка WordPress</li>
+                        <li>SEO-оптимизация</li>
+                        <li>Форма заявки</li>
+                    </ul>
+                    <a href="#cta" class="btn-outline">Заказать</a>
+                </div>
+                <div class="pricing-card popular">
+                    <h4>Сайт-каталог</h4>
+                    <div class="price">45 000 ₽ <span>от</span></div>
+                    <ul>
+                        <li>Всё из предыдущего</li>
+                        <li>Каталог товаров</li>
+                        <li>Фильтрация и поиск</li>
+                        <li>Интеграция с ТГ-ботом</li>
+                    </ul>
+                    <a href="#cta" class="btn-primary">Заказать</a>
+                </div>
+                <div class="pricing-card">
+                    <h4>Интернет-магазин</h4>
+                    <div class="price">70 000 ₽ <span>от</span></div>
+                    <ul>
+                        <li>Всё из предыдущего</li>
+                        <li>Сервисы оплаты</li>
+                        <li>Проработанная корзина</li>
+                        <li>Интеграция с 1С / CRM</li>
+                    </ul>
+                    <a href="#cta" class="btn-outline">Заказать</a>
+                </div>
+                <div class="pricing-card">
+                    <h4>Парсинг | Боты</h4>
+                    <div class="price">15 000 ₽ <span>от</span></div>
+                    <ul>
+                        <li>Боты / Парсеры / API</li>
+                        <li>Кастомная логика</li>
+                        <li>Интеграции с внешними сервисами</li>
+                        <li>Индивидуальный подход</li>
+                    </ul>
+                    <a href="#cta" class="btn-outline">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq" id="faq">
+        <div class="faq-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2>Часто <span class="gradient-text">спрашивают</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span>Почему у вас цены ниже, чем в дизайн-студиях?</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы не занимаемся дизайном как искусством. Мы берём готовые дизайн-макеты (или помогаем подобрать шаблон) и превращаем их в рабочий продукт. Наша экспертиза — в технической реализации, интеграциях и скорости. Вы получаете качественный сайт без переплаты за «креатив».</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Вы используете конструкторы или пишете с нуля?</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы используем WordPress с кастомными темами и Elementor для быстрой вёрстки. Это позволяет нам делать сайты в 2-3 раза быстрее, чем с нуля, но при этом мы пишем весь уникальный функционал на чистом PHP и JS. Вы получаете сайт, который легко масштабировать и доделывать.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Можно ли будет дорабатывать сайт после запуска?</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, мы даём гарантию на все работы и остаёмся на связи после сдачи проекта. Любые доработки — фиксированная цена или часовая ставка. Мы не бросаем клиентов после получения оплаты.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Зачем моему бизнесу телеграм-бот?</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Телеграм-бот автоматизирует общение с клиентами: сбор заявок, уведомления о заказах, запись на услуги, рассылки. Это повышает конверсию на 30-50% и экономит ваше время на рутинных задачах.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Как происходит работа над проектом?</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>1. Заполнение краткого брифа.<br>2. Обсуждаем задачу и фиксируем ТЗ.<br>3. Копиратинг, подбор изображений, разрабатываем дизайн-макет<br>4. Верстаем и программируем.<br>5. Тестируем и запускаем.<br>6. Передаём готовый сайт и обучаем работе с админкой.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" id="cta">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta">
+                <span class="section-label">Начните сегодня</span>
+                <h2>Обсудим ваш <span class="gradient-text">проект</span>?</h2>
+                <p>Оставьте заявку — мы свяжемся с вами в течение 30 минут, чтобы обсудить детали и подготовить точную смету.</p>
+                <a href="#" class="btn-primary" onclick="alert('Спасибо! Мы свяжемся с вами в ближайшее время.'); return false;">
+                    Обсудить проект
+                </a>
+                <p style="margin-top: 16px; font-size: 0.85rem; color: var(--gray);">
+                    Или напишите напрямую: <strong style="color: var(--white);">company@quantum-craft.ru</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <a href="#" class="logo" style="font-size: 1.2rem;">
+                    <span class="logo-icon" style="width: 28px; height: 28px; font-size: 0.7rem;">⚛</span>
+                    Quantum<span>Craft</span>
+                </a>
+                <div class="footer-links">
+                    <a href="#about">О нас</a>
+                    <a href="#services">Услуги</a>
+                    <a href="#portfolio">Портфолио</a>
+                    <a href="#pricing">Цены</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-copy">
+                    © 2026 Quantum Craft. Разработка сайтов в Новосибирске.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        // ===== Project Data =====
+        const projects = {
+            1: {
+                title: 'Vozduh — студия танца (Латвия)',
+                tag: 'Многоязычный лендинг',
+                description: 'Лендинг для студии танца Vozduh из Латвии. Проект включал разработку многоязычного сайта на русском, английском и латышском языках с полной адаптацией контента под каждый язык.',
+                details: [
+                    'Видео-презентация студии на главном экране',
+                    'Расписание занятий с возможностью фильтрации по группам',
+                    'Онлайн-запись на занятия с интеграцией в CRM',
+                    'Видеоотзывы учеников',
+                    'Блок FAQ для ответов на частые вопросы',
+                    'Интеграция с телеграм-ботом для уведомлений о новых записях'
+                ],
+                result: 'Заявок +70% за первый месяц, средняя конверсия 4.2%',
+                timeline: '3 недели',
+                cost: '65 000 ₽',
+                stack: ['WordPress', 'PHP', 'JS', 'HTML/SCSS', 'Telegram API']
+            },
+            2: {
+                title: 'OnlineSell.uz — конструктор бизнеса',
+                tag: 'SaaS-платформа + CRM',
+                description: 'Сайт-конструктор для создания бизнеса в ресторанной и гостиничной сферах. Аналог Robosell.uz с расширенным функционалом для рынка Узбекистана.',
+                details: [
+                    'Пошаговый конструктор создания бизнеса (выбор ниши, настройка меню/услуг)',
+                    'Встроенная CRM-система для контроля продаж и управления товарами/услугами',
+                    'Автоматическое создание телеграм-бота для каждого арендатора',
+                    'Система подписок с разными тарифными планами',
+                    'Админ-панель владельца для управления арендаторами',
+                    'Интеграция с платежными системами'
+                ],
+                result: '50+ активных арендаторов за 3 месяца, средний чек подписки 15 000 ₽/мес',
+                timeline: '2.5 месяца',
+                cost: '280 000 ₽',
+                stack: ['PHP (Laravel)', 'JS', 'PostgreSQL', 'Telegram API', 'Node.js']
+            },
+            3: {
+                title: 'ModuleSource — парсер радиодеталей',
+                tag: 'Парсер в реальном времени',
+                description: 'Сервис для поиска радиодеталей и электроники с автоматическим парсингом данных с 3-х сайтов-доноров. Результат выводится в реальном времени в виде таблицы.',
+                details: [
+                    'Поиск по названию детали в реальном времени',
+                    'Парсинг одновременно с 3-х сайтов-доноров',
+                    'Отображение результатов в виде удобной таблицы с ценами и наличием',
+                    'Цены автоматически пересчитываются с учетом наценки владельца сайта',
+                    'Добавление товаров в корзину для формирования заявки',
+                    'Отправка заявки владельцу сайта (клиент не покупает на сайте)'
+                ],
+                result: 'База из 50 000+ позиций, поиск за 2 секунды, 95% точности',
+                timeline: '1.5 месяца',
+                cost: '150 000 ₽',
+                stack: ['Node.js', 'Puppeteer', 'PHP', 'MySQL', 'JS (AJAX)']
+            }
+        };
+
+        // ===== Modal Functions =====
+        function openModal(projectId) {
+            const project = projects[projectId];
+            if (!project) return;
+
+            const modal = document.getElementById('projectModal');
+            const content = document.getElementById('modalContent');
+
+            let detailsHtml = project.details.map(d => `<li>${d}</li>`).join('');
+            let stackHtml = project.stack.map(s => `<span class="stack-tag">${s}</span>`).join('');
+
+            content.innerHTML = `
+                <h2>${project.title}</h2>
+                <span class="project-tag">${project.tag}</span>
+                <p style="color: var(--gray-text); font-size: 1.05rem; margin-bottom: 20px;">${project.description}</p>
+
+                <div class="project-detail">
+                    <strong>Что сделано:</strong>
+                    <ul>
+                        ${detailsHtml}
+                    </ul>
+                </div>
+
+                <div class="project-specs">
+                    <div class="spec">
+                        <div class="label">Срок</div>
+                        <div class="value">${project.timeline}</div>
+                    </div>
+                    <div class="spec">
+                        <div class="label">Стоимость</div>
+                        <div class="value">${project.cost}</div>
+                    </div>
+                    <div class="spec">
+                        <div class="label">Результат</div>
+                        <div class="value" style="font-size: 0.9rem;">${project.result}</div>
+                    </div>
+                    <div class="spec">
+                        <div class="label">Стек</div>
+                        <div class="value" style="font-size: 0.75rem; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;">
+                            ${stackHtml}
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#cta" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 12px;" onclick="document.getElementById('projectModal').classList.remove('active');">
+                    Обсудить похожий проект
+                </a>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== Event Listeners =====
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const projectId = item.dataset.project;
+                openModal(projectId);
+            });
+        });
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ===== Mobile Menu =====
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('open');
+            });
+        });
+
+        // ===== Header Scroll Effect =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== FAQ Accordion =====
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===== Smooth Anchor Scroll =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== Intersection Observer for animations =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-item, .pricing-card, .about-stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        setTimeout(() => {
+            document.querySelectorAll('.service-card, .portfolio-item, .pricing-card, .about-stat-card').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        }, 100);
+
+        console.log('⚛ Quantum Craft — готов к работе!');
+    </script>
+
+</body>
+</html>
